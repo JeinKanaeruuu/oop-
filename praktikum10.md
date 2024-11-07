@@ -18,5 +18,26 @@ Modul ini akan menjelaskan:
 - **Mencegah Konflik Nama**: Dengan namespace, kita dapat memiliki kelas atau fungsi dengan nama yang sama di bagian lain dari aplikasi.
 - **Memudahkan Organisasi Kode**: Namespace membantu kita mengelompokkan kode sesuai dengan fungsinya, misalnya dengan mengelompokkan kelas Model, Controller, dan lain-lain.
 
-### Cara Membuat Namespace
-Namespace dideklarasikan dengan menggunakan keyword `namespace`, yang harus ditulis di bagian atas file PHP sebelum kode lain.
+### Cara Membuat Namespace dan Autoload di PHP
+Berikut adalah langkah-langkah dari awal : 
+
+1. Buat susunan folder : 
+project/
+├── src/
+│   ├── Animals/
+│   │   ├── Cat.php
+│   │   └── Dog.php
+│   └── index.php
+└── composer.json
+
+2.  Buat File composer.json
+Agar Composer bisa mengatur autoloading, kita perlu file composer.json di dalam folder project. Isi file composer.json seperti berikut:
+```
+{
+    "autoload": {
+        "psr-4": {
+            "Animals\\": "src/Animals"
+        }
+    }
+}
+```
