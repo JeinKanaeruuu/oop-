@@ -207,7 +207,172 @@ $userB = new UserB();
 echo $userB->sayHello(); // Output: Hello from LibraryB!
 ```
 
-## 3. Kesimpulan
+## 3. Contoh Ketiga
+
+1. Buatlah susunan folder
+
+```
+project/
+├── src/
+│   ├── LibraryA/
+│   │   └── Book.php
+│   ├── LibraryB/
+│   │     └── Book.php
+│   └── LibraryC/
+│       └── Book.php
+│   └── index.php
+├── composer.json
+└── vendor/
+    └── autoload.php
+```
+
+2. Buat file composer.json:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "LibraryA\\": "project/src/LibraryA/",
+            "LibraryB\\": "project/src/LibraryB/",
+            "LibraryC\\": "project/src/LibraryC/"
+        }
+    }
+}
+```
+
+3. Buat file autoload.php di folder project/src/libraryA, libraryB, dan libraryC, dengan isi seperti berikut:
+
+LibraryA/Book.php:
+```php
+<?php
+namespace LibraryA;
+
+class Book {
+    private $title;
+    private $author;
+    private $year;
+
+    public function __construct($title, $author, $year) {
+        $this->title = $title;
+        $this->author = $author;
+        $this->year = $year;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getAuthor() {
+        return $this->author;
+    }
+
+    public function getYear() {
+        return $this->year;
+    }
+
+    public function getBookInfo() {
+        return "Title: {$this->title}, Author: {$this->author}, Year: {$this->year}";
+    }
+}
+```
+
+LibraryB/Book.php:
+```php
+<?php
+namespace LibraryB;
+
+class Book {
+    private $title;
+    private $author;
+    private $year;
+
+    public function __construct($title, $author, $year) {
+        $this->title = $title;
+        $this->author = $author;
+        $this->year = $year;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getAuthor() {
+        return $this->author;
+    }
+
+    public function getYear() {
+        return $this->year;
+    }
+
+    public function getBookInfo() {
+        return "Title: {$this->title}, Author: {$this->author}, Year: {$this->year}";
+    }
+}
+```
+
+LibraryC/Book.php:
+```php
+<?php
+namespace LibraryC;
+
+class Book {
+    private $title;
+    private $author;
+    private $year;
+
+    public function __construct($title, $author, $year) {
+        $this->title = $title;
+        $this->author = $author;
+        $this->year = $year;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getAuthor() {
+        return $this->author;
+    }
+
+    public function getYear() {
+        return $this->year;
+    }
+
+    public function getBookInfo() {
+        return "Title: {$this->title}, Author: {$this->author}, Year: {$this->year}";
+    }
+}
+```
+
+4. Buat file index.php:
+
+```php
+<?php
+require __DIR__ . '/../../vendor/autoload.php'; // Memuat autoload dari Composer
+
+use LibraryA\Book as BookA;
+use LibraryB\Book as BookB;
+use LibraryC\Book as BookC;
+
+// Membuat objek buku dari LibraryA
+$bookA = new BookA("The Great Gatsby", "F. Scott Fitzgerald", 1925);
+echo $bookA->getBookInfo();  // Output: Title: The Great Gatsby, Author: F. Scott Fitzgerald, Year: 1925
+
+echo "<br>";
+
+// Membuat objek buku dari LibraryB
+$bookB = new BookB("1984", "George Orwell", 1949);
+echo $bookB->getBookInfo();  // Output: Title: 1984, Author: George Orwell, Year: 1949
+
+echo "<br>";
+
+// Membuat objek buku dari LibraryC
+$bookC = new BookC("Brave New World", "Aldous Huxley", 1932);
+echo $bookC->getBookInfo();  // Output: Title: Brave New World, Author: Aldous Huxley, Year: 1932
+```
+
+
+## 4. Kesimpulan
 Dengan Namespace: Namespace menghindari konflik nama dan memungkinkan kita untuk mendefinisikan dua kelas dengan nama yang sama di ruang lingkup yang berbeda. Menggunakan Composer dengan autoload membuat pemuatan kelas menjadi otomatis dan lebih efisien.
 
 
@@ -216,11 +381,11 @@ Tanpa Namespace: Tanpa namespace, jika ada dua kelas dengan nama yang sama, kita
 
 ## Tugas
 
-buat penerapan Namespace dan Autoloading dengan Composer.terdiri dari dua bagian: LibraryA dan LibraryB. Setiap bagian memiliki kelas yang bernama Book, namun dengan fungsi yang berbeda. Anda perlu mengelola konflik nama kelas Book menggunakan namespace, dan menerapkan autoloading dengan Composer untuk memudahkan pemuatan kelas secara otomatis.
+buat penerapan Namespace dan Autoloading dengan Composer.terdiri dari dua bagian: FilmA, FilmB, FilmC, dan FilmD. Setiap Film memiliki atribut title, director, dan year. lalu panggil ketiganya di file index.php
 
 Batas waktu pengerjaan: 15 Menit 
 ```
-<=5 Menit = 100
->5 menit | <10 Menit = 86 
->10 Menit = 78
+<=10 Menit = 100
+>=10 menit | <=15 Menit = 86 
+>15 Menit = 78
 ```
