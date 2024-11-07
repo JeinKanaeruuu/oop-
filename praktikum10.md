@@ -1,4 +1,4 @@
-# Modul PHP: Mengenal Konsep Namespace dan Autoload
+# Praktikum 11: Mengenal Konsep Namespace dan Autoload
 
 ## Pendahuluan
 Dalam pengembangan aplikasi dengan PHP, seringkali kita akan memiliki banyak file, kelas, fungsi, dan konstanta. Hal ini dapat menyebabkan konflik nama ketika ada beberapa kelas atau fungsi dengan nama yang sama. Untuk mengatasi masalah tersebut, PHP menyediakan fitur **Namespace**. Selain itu, agar lebih mudah mengelola banyak file tanpa harus menyertakan (`include` atau `require`) secara manual, PHP mendukung fitur **Autoloading**.
