@@ -1,4 +1,4 @@
-# Praktikum 11: Mengenal Konsep Namespace dan Autoload
+# Modul PHP: Mengenal Konsep Namespace dan Autoload
 
 ## Pendahuluan
 Dalam pengembangan aplikasi dengan PHP, seringkali kita akan memiliki banyak file, kelas, fungsi, dan konstanta. Hal ini dapat menyebabkan konflik nama ketika ada beberapa kelas atau fungsi dengan nama yang sama. Untuk mengatasi masalah tersebut, PHP menyediakan fitur **Namespace**. Selain itu, agar lebih mudah mengelola banyak file tanpa harus menyertakan (`include` atau `require`) secara manual, PHP mendukung fitur **Autoloading**.
@@ -107,3 +107,120 @@ Meow!
 Woof!
 ```
 
+## 2. Contoh kedua
+
+Jika tanpa namespace maka akan muncul error. contohnya : 
+
+LibraryA/User.php: 
+```php
+<?php
+class User {
+    public function sayHello() {
+        return "Hello from LibraryA!";
+    }
+}
+```
+
+LibraryB/User.php:
+```php
+<?php
+class User {
+    public function sayHello() {
+        return "Hello from LibraryB!";
+    }
+}
+```
+
+maka akan terjadi error seperti berikut: 
+
+```
+Fatal error: Cannot redeclare class User
+```
+
+Maka kita harus membuat namespace agar tidak terjadi error tersebut.
+
+1. Buatlah susunan folder 
+
+```
+project/
+├── src/
+│   ├── LibraryA/
+│   │   └── User.php
+│   └── LibraryB/
+│       └── User.php
+    └── index.php
+├── composer.json
+└── vendor/
+    └── autoload.php
+```
+
+2. Buat file composer.json:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "LibraryA\\": "project/src/LibraryA/",
+            "LibraryB\\": "project/src/LibraryB/"
+        }
+    }
+}
+```
+Buatlah file autoload.php di folder project/src/libraryA dan libraryB, dengan isi seperti berikut:
+
+LibraryA/User.php:
+```php
+<?php
+namespace LibraryA;
+
+class User {
+    public function sayHello() {
+        return "Hello from LibraryA!";
+    }
+}
+```
+
+LibraryB/User.php:
+```php
+<?php
+namespace LibraryB;
+
+class User {
+    public function sayHello() {
+        return "Hello from LibraryB!";
+    }
+}
+```
+
+index.php:
+```php
+<?php
+require __DIR__ . '/../../vendor/autoload.php';// Memuat autoload dari Composer
+
+use LibraryA\User as UserA;  // Alias untuk User dari LibraryA
+use LibraryB\User as UserB;  // Alias untuk User dari LibraryB
+
+$userA = new UserA();
+echo $userA->sayHello(); // Output: Hello from LibraryA!
+
+$userB = new UserB();
+echo $userB->sayHello(); // Output: Hello from LibraryB!
+```
+
+## 3. Kesimpulan
+Dengan Namespace: Namespace menghindari konflik nama dan memungkinkan kita untuk mendefinisikan dua kelas dengan nama yang sama di ruang lingkup yang berbeda. Menggunakan Composer dengan autoload membuat pemuatan kelas menjadi otomatis dan lebih efisien.
+
+
+Tanpa Namespace: Tanpa namespace, jika ada dua kelas dengan nama yang sama, kita akan mengalami konflik dan tidak bisa menggunakan keduanya dalam satu proyek.
+
+
+## Tugas
+
+buat penerapan Namespace dan Autoloading dengan Composer.terdiri dari dua bagian: LibraryA dan LibraryB. Setiap bagian memiliki kelas yang bernama Book, namun dengan fungsi yang berbeda. Anda perlu mengelola konflik nama kelas Book menggunakan namespace, dan menerapkan autoloading dengan Composer untuk memudahkan pemuatan kelas secara otomatis.
+
+Batas waktu pengerjaan: 15 Menit 
+```
+<=5 Menit = 100
+>5 menit | <10 Menit = 86 
+>10 Menit = 78
+```
