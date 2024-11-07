@@ -18,6 +18,51 @@ Modul ini akan menjelaskan:
 - **Mencegah Konflik Nama**: Dengan namespace, kita dapat memiliki kelas atau fungsi dengan nama yang sama di bagian lain dari aplikasi.
 - **Memudahkan Organisasi Kode**: Namespace membantu kita mengelompokkan kode sesuai dengan fungsinya, misalnya dengan mengelompokkan kelas Model, Controller, dan lain-lain.
 
+Tanpa Namespace ? 
+
+```
+<?php
+class Cat {
+    public function sound() {
+        return "Purr";
+    }
+}
+```
+
+```
+<?php
+class Dog {
+    public function sound() {
+        return "Woof";
+    }
+}
+```
+
+Index :
+
+```
+<?php
+require 'Cat.php';  // Mengambil Cat pertama
+require 'Dog.php';  // Mengambil Dog pertama
+
+// Sekarang akan ada masalah jika kedua Cat dan Dog sudah ada pada lokasi lain dengan nama yang sama
+$cat = new Cat();
+echo $cat->sound();  // Jika kelas `Cat` yang pertama di-include, ini akan berfungsi.
+
+echo "<br>";
+
+$dog = new Dog();
+echo $dog->sound();  // Jika kelas `Dog` yang pertama di-include, ini juga akan berfungsi.
+```
+
+Output : 
+```
+
+Fatal error: Cannot declare class Cat, because the name is already in use in ...
+```
+
+
+
 ### Cara Membuat Namespace dan Autoload di PHP
 Berikut adalah langkah-langkah dari awal : 
 
