@@ -173,4 +173,19 @@ $stmt->execute();
 
 echo "Data berhasil dihapus!";
 ```
+# Tugas Praktikum 
+Buatlah CRUD dengan menggunakan konsep PDO seperti yang sudah di ajarkan dimana nama databasenya namakalianPDO (contoh: HardiPDO), dimana tablenya ada ID, Nama Mahasiswa, Nama Institusi, Jurusan, Prodi, Semester. 
+
+| `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  `MINIMAL 3`  DATA | 
+
+Format pengumpulan MD, Source Code diketik di MD bukan di SS!
+
+Isi MD : 
+1. Nama Nim
+2. Judul
+3. Source code masing masing file
+4. Output Create
+5. Output Read
+6. Output Read setelah di Update
+
 
